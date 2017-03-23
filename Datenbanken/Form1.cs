@@ -27,7 +27,7 @@ namespace Datenbanken
             strgbild.DataSource = "Bestellung.accdb";
             con = new OleDbConnection(strgbild.ConnectionString);
             try
-            {
+            { 
                 con.Open();
                 buttonCommand.Enabled = true;
             }
