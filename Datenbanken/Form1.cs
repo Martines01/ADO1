@@ -22,10 +22,10 @@ namespace Datenbanken
         }
         private void buttonConnection_Click(object sender, EventArgs e)
         {
-            OleDbConnectionStringBuilder strgbild = new OleDbConnectionStringBuilder();
-            strgbild.Provider = "Microsoft.ACE.OLEDB.12.0";
-            strgbild.DataSource = "Bestellung.accdb";
-            con = new OleDbConnection(strgbild.ConnectionString);
+            //OleDbConnectionStringBuilder strgbild = new OleDbConnectionStringBuilder();
+            //strgbild.Provider = "Microsoft.ACE.OLEDB.12.0";
+            //strgbild.DataSource = "Bestellung.accdb";
+            con = new OleDbConnection(Properties.Settings.Default.DBCon);
             try
             { 
                 con.Open();
@@ -39,10 +39,13 @@ namespace Datenbanken
         private void buttonCommand_Click(object sender, EventArgs e)
         {
             cmd = con.CreateCommand();
-            cmd.CommandText = "Select * from tArtikel";
+            cmd.Parameters.Add("belibig", OleDbType.Integer);
+            String artgr = textBoxArtikelGruppe.Text;
+            cmd.CommandText = "Select * from tArtikel where Artikelgruppe = belibig";
             cmd.CommandType = CommandType.Text;
             try
             {
+                cmd.Parameters["belibig"].Value = textBoxArtikelGruppe.Text;
                 reader = cmd.ExecuteReader();
                 buttonRead.Enabled = true;
 
@@ -55,6 +58,7 @@ namespace Datenbanken
 
         private void buttonRead_Click(object sender, EventArgs e)
         {
+            listBoxAusgabe.Items.Clear();
             while(reader.Read())
             {
                 String zeile = reader["ArtikelNr"] + ": " + reader["Bezeichnung"];

@@ -32,6 +32,8 @@
             this.buttonCommand = new System.Windows.Forms.Button();
             this.buttonRead = new System.Windows.Forms.Button();
             this.listBoxAusgabe = new System.Windows.Forms.ListBox();
+            this.labelArtGrp = new System.Windows.Forms.Label();
+            this.textBoxArtikelGruppe = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonConnection
@@ -74,11 +76,29 @@
             this.listBoxAusgabe.Size = new System.Drawing.Size(234, 147);
             this.listBoxAusgabe.TabIndex = 3;
             // 
+            // labelArtGrp
+            // 
+            this.labelArtGrp.AutoSize = true;
+            this.labelArtGrp.Location = new System.Drawing.Point(223, 111);
+            this.labelArtGrp.Name = "labelArtGrp";
+            this.labelArtGrp.Size = new System.Drawing.Size(69, 13);
+            this.labelArtGrp.TabIndex = 4;
+            this.labelArtGrp.Text = "Artikelgruppe";
+            // 
+            // textBoxArtikelGruppe
+            // 
+            this.textBoxArtikelGruppe.Location = new System.Drawing.Point(299, 110);
+            this.textBoxArtikelGruppe.Name = "textBoxArtikelGruppe";
+            this.textBoxArtikelGruppe.Size = new System.Drawing.Size(100, 20);
+            this.textBoxArtikelGruppe.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(527, 439);
+            this.Controls.Add(this.textBoxArtikelGruppe);
+            this.Controls.Add(this.labelArtGrp);
             this.Controls.Add(this.listBoxAusgabe);
             this.Controls.Add(this.buttonRead);
             this.Controls.Add(this.buttonCommand);
@@ -86,6 +106,7 @@
             this.Name = "Form1";
             this.Text = "ADO - Connect Beispiel 1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -95,6 +116,8 @@
         private System.Windows.Forms.Button buttonCommand;
         private System.Windows.Forms.Button buttonRead;
         private System.Windows.Forms.ListBox listBoxAusgabe;
+        private System.Windows.Forms.Label labelArtGrp;
+        private System.Windows.Forms.TextBox textBoxArtikelGruppe;
     }
 }
 
