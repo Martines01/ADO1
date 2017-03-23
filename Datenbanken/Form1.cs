@@ -52,7 +52,7 @@ namespace Datenbanken
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.Message, "Exeption", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);                throw;
+                MessageBox.Show(ex.Message, "Exeption", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -61,9 +61,33 @@ namespace Datenbanken
             listBoxAusgabe.Items.Clear();
             while(reader.Read())
             {
-                String zeile = reader["ArtikelNr"] + ": " + reader["Bezeichnung"];
-                listBoxAusgabe.Items.Add(zeile);
+                //Artikel a = mkArtikelObject(reader);
+                listBoxAusgabe.Items.Add(mkArtikelObject(reader));
+
+
+                //String zeile = reader["ArtikelNr"] + ": " + reader["Bezeichnung"];
+                //listBoxAusgabe.Items.Add(zeile);
             }
+            reader.Close();
+        }
+
+        private Artikel mkArtikelObject(OleDbDataReader reader)
+        {
+            Artikel a = new Artikel();
+            
+            int i = 0;
+            if(reader[i] != null)a.ArtikelOid = Convert.ToInt32(reader[i]);
+            i++;
+            a.ArtikelNr = Convert.ToInt32(reader[i++]);
+            a.ArtikelGruppe = Convert.ToInt32(reader[i++]);
+            a.Bezeichnung = reader[i++].ToString();
+            a.Bestand = Convert.ToInt16(reader[i++]);
+            a.Meldebestand = Convert.ToInt16(reader[i++]);
+            a.Verpackung = Convert.ToInt16(reader[i++]);
+            a.VkPreis = Convert.ToDecimal(reader[i++]);
+            a.letzteEntnahme = Convert.ToDateTime(reader[i++]);
+
+            return a;
         }
     }
 }
