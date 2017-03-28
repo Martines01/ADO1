@@ -17,5 +17,11 @@ namespace Datenbanken
         public int Verpackung { get; set; }
         public Decimal VkPreis { get; set; }
         public DateTime letzteEntnahme { get; set; }
+
+        public override string ToString()
+        {
+            string text = ArtikelNr.ToString() + " : " + Bezeichnung;
+            return text;
+        }
     }
 }

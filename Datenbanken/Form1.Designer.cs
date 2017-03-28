@@ -34,6 +34,7 @@
             this.listBoxAusgabe = new System.Windows.Forms.ListBox();
             this.labelArtGrp = new System.Windows.Forms.Label();
             this.textBoxArtikelGruppe = new System.Windows.Forms.TextBox();
+            this.buttonCreateItem = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonConnection
@@ -92,11 +93,23 @@
             this.textBoxArtikelGruppe.Size = new System.Drawing.Size(100, 20);
             this.textBoxArtikelGruppe.TabIndex = 5;
             // 
+            // buttonCreateItem
+            // 
+            this.buttonCreateItem.Enabled = false;
+            this.buttonCreateItem.Location = new System.Drawing.Point(344, 282);
+            this.buttonCreateItem.Name = "buttonCreateItem";
+            this.buttonCreateItem.Size = new System.Drawing.Size(110, 50);
+            this.buttonCreateItem.TabIndex = 6;
+            this.buttonCreateItem.Text = "Neuer Artikel";
+            this.buttonCreateItem.UseVisualStyleBackColor = true;
+            this.buttonCreateItem.Click += new System.EventHandler(this.buttonCreateItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(527, 439);
+            this.Controls.Add(this.buttonCreateItem);
             this.Controls.Add(this.textBoxArtikelGruppe);
             this.Controls.Add(this.labelArtGrp);
             this.Controls.Add(this.listBoxAusgabe);
@@ -118,6 +131,7 @@
         private System.Windows.Forms.ListBox listBoxAusgabe;
         private System.Windows.Forms.Label labelArtGrp;
         private System.Windows.Forms.TextBox textBoxArtikelGruppe;
+        private System.Windows.Forms.Button buttonCreateItem;
     }
 }
 

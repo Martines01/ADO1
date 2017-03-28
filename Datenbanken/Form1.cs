@@ -30,6 +30,7 @@ namespace Datenbanken
             { 
                 con.Open();
                 buttonCommand.Enabled = true;
+                buttonCreateItem.Enabled = true;
             }
             catch (OleDbException ex)
             {  
@@ -61,10 +62,7 @@ namespace Datenbanken
             listBoxAusgabe.Items.Clear();
             while(reader.Read())
             {
-                //Artikel a = mkArtikelObject(reader);
                 listBoxAusgabe.Items.Add(mkArtikelObject(reader));
-
-
                 //String zeile = reader["ArtikelNr"] + ": " + reader["Bezeichnung"];
                 //listBoxAusgabe.Items.Add(zeile);
             }
@@ -76,18 +74,26 @@ namespace Datenbanken
             Artikel a = new Artikel();
             
             int i = 0;
-            if(reader[i] != null)a.ArtikelOid = Convert.ToInt32(reader[i]);
-            i++;
-            a.ArtikelNr = Convert.ToInt32(reader[i++]);
-            a.ArtikelGruppe = Convert.ToInt32(reader[i++]);
-            a.Bezeichnung = reader[i++].ToString();
-            a.Bestand = Convert.ToInt16(reader[i++]);
-            a.Meldebestand = Convert.ToInt16(reader[i++]);
-            a.Verpackung = Convert.ToInt16(reader[i++]);
-            a.VkPreis = Convert.ToDecimal(reader[i++]);
-            a.letzteEntnahme = Convert.ToDateTime(reader[i++]);
+            if (!DBNull.Value.Equals(reader[i])) a.ArtikelOid = Convert.ToInt32(reader[i++]);
+            if (!DBNull.Value.Equals(reader[i])) a.ArtikelNr = Convert.ToInt32(reader[i++]);
+            if (!DBNull.Value.Equals(reader[i])) a.ArtikelGruppe = Convert.ToInt32(reader[i++]);
+            if (!DBNull.Value.Equals(reader[i])) a.Bezeichnung = reader[i++].ToString();
+            if (!DBNull.Value.Equals(reader[i])) a.Bestand = Convert.ToInt16(reader[i++]);
+            if (!DBNull.Value.Equals(reader[i])) a.Meldebestand = Convert.ToInt16(reader[i++]);
+            if (!DBNull.Value.Equals(reader[i])) a.Verpackung = Convert.ToInt16(reader[i++]);
+            if (!DBNull.Value.Equals(reader[i])) a.VkPreis = Convert.ToDecimal(reader[i++]);
+            if (!DBNull.Value.Equals(reader[i])) a.letzteEntnahme = Convert.ToDateTime(reader[i]);
+          
 
             return a;
+        }
+
+        private void buttonCreateItem_Click(object sender, EventArgs e)
+        {
+            FormCreateItem frmArt = new FormCreateItem(con);
+            frmArt.ShowDialog();
+            
+
         }
     }
 }
