@@ -16,9 +16,11 @@ namespace Datenbanken
         OleDbConnection con = null;
         OleDbCommand cmd = null;
         OleDbDataReader reader = null;
+        List<Artikel> listArtikel = null;
         public Form1()
         {
             InitializeComponent();
+            listArtikel = new List<Artikel>();
         }
         private void buttonConnection_Click(object sender, EventArgs e)
         {
@@ -59,14 +61,18 @@ namespace Datenbanken
 
         private void buttonRead_Click(object sender, EventArgs e)
         {
-            listBoxAusgabe.Items.Clear();
+            listBoxAusgabe.DataSource = null;
+            listArtikel.Clear();
             while(reader.Read())
             {
                 listBoxAusgabe.Items.Add(mkArtikelObject(reader));
                 //String zeile = reader["ArtikelNr"] + ": " + reader["Bezeichnung"];
                 //listBoxAusgabe.Items.Add(zeile);
+                listArtikel.Add(mkArtikelObject(reader));
             }
             reader.Close();
+            listBoxAusgabe.DataSource = listArtikel;
+            listBoxAusgabe.DisplayMember = "Display";
         }
 
         private Artikel mkArtikelObject(OleDbDataReader reader)
@@ -75,7 +81,7 @@ namespace Datenbanken
             
             int i = 0;
             if (!DBNull.Value.Equals(reader[i])) a.ArtikelOid = Convert.ToInt32(reader[i++]);
-            if (!DBNull.Value.Equals(reader[i])) a.ArtikelNr = Convert.ToInt32(reader[i++]);
+            if (!DBNull.Value.Equals(reader[i])) a.ArtikelNr = reader[i++].ToString();
             if (!DBNull.Value.Equals(reader[i])) a.ArtikelGruppe = Convert.ToInt32(reader[i++]);
             if (!DBNull.Value.Equals(reader[i])) a.Bezeichnung = reader[i++].ToString();
             if (!DBNull.Value.Equals(reader[i])) a.Bestand = Convert.ToInt16(reader[i++]);
@@ -91,8 +97,11 @@ namespace Datenbanken
         private void buttonCreateItem_Click(object sender, EventArgs e)
         {
             FormCreateItem frmArt = new FormCreateItem(con);
-            frmArt.ShowDialog();
-            
+            frmArt.ShowDialog(); // modal öffnen
+            if(frmArt.NewArtikel != null)
+            {
+                listArtikel.Add(frmArt.NewArtikel);
+            }
 
         }
     }

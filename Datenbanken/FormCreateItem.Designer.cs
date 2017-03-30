@@ -101,7 +101,6 @@
             this.textBoxArtikelNr.Name = "textBoxArtikelNr";
             this.textBoxArtikelNr.Size = new System.Drawing.Size(100, 20);
             this.textBoxArtikelNr.TabIndex = 6;
-            this.textBoxArtikelNr.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxArtikelNr_Validating);
             // 
             // textBoxArtikelGrp
             // 
@@ -144,6 +143,7 @@
             this.buttonAbruch.TabIndex = 11;
             this.buttonAbruch.Text = "Abruch";
             this.buttonAbruch.UseVisualStyleBackColor = true;
+            this.buttonAbruch.Click += new System.EventHandler(this.buttonAbruch_Click);
             // 
             // FormCreateItem
             // 

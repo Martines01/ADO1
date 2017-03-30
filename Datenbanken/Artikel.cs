@@ -9,7 +9,7 @@ namespace Datenbanken
     class Artikel
     {
         public int ArtikelOid { get; set; }
-        public int ArtikelNr { get; set; }
+        public String ArtikelNr { get; set; }
         public int ArtikelGruppe { get; set; }
         public String Bezeichnung { get; set; }
         public Int16 Bestand { get; set; }
@@ -20,7 +20,7 @@ namespace Datenbanken
 
         public override string ToString()
         {
-            string text = ArtikelNr.ToString() + " : " + Bezeichnung;
+            string text = ArtikelNr + " : " + Bezeichnung;
             return text;
         }
     }
